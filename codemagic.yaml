@@ -3,21 +3,13 @@ workflows:
     name: Mood App Release
     max_build_duration: 60
     environment:
-      flutter: stable
+      flutter: 3.24.0  # <-- version fix कर दिया
       xcode: latest
       cocoapods: default
-      groups:
-        - google_play
     scripts:
-      - name: Install dependencies
-        script: |
-          flutter pub get
+      - name: Get dependencies
+        script: flutter pub get
       - name: Build APK
-        script: |
-          flutter build apk --release --no-tree-shake-icons
+        script: flutter build apk --release
     artifacts:
       - build/app/outputs/flutter-apk/app-release.apk
-    publishing:
-      email:
-        recipients:
-          - your-email@gmail.com
